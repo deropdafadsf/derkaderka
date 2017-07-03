@@ -4,6 +4,14 @@ import { Tasks } from '../api/tasks.js'
 
 // Task Component - represents a single todo item
 export default class Task extends Component {
+   constructor(props) {
+      super(props)
+
+      this.state = {
+         isSelected: false,
+      }
+   }
+
    toggleChecked() {
       // Set the checked property to the opposite of its current value
       Tasks.update(this.props.task._id, {
@@ -19,6 +27,7 @@ export default class Task extends Component {
       // Give tasks a different className when they are checked off,
       // so that we can style them nicely in CSS
       const taskClassName = this.props.task.checked ? 'checked' : ''
+      if ( this.props.task.isSelected ) ? 'selectedItem' : ''
 
       return (
          <li className={taskClassName}>
@@ -43,4 +52,6 @@ Task.propTypes = {
    // This Component gets the task to display through a react prop
    // we can use proptypes to indicate it is required
    task: PropTypes.object.isRequired,
+   onClick: PropTypes.func.isRequired,
+   isSelected: PropTypes.bool,
 }

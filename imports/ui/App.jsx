@@ -14,7 +14,13 @@ class App extends Component {
 
       this.state = {
          hideCompleted: false,
+         selectedItem: null,
       }
+   }
+
+   clickHandler(event) {
+      this.setState({selectedItem: })
+               key  = {task._id}
    }
 
    handleSubmit(event) {
@@ -48,6 +54,8 @@ class App extends Component {
             <Task
                key  = {task._id}
                task = {task}
+               onClick = {this.clickHandler.bind(this, id)}
+               isSelected = {is_selected}
             />
       ))
    }
