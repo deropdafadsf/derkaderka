@@ -14,13 +14,12 @@ class App extends Component {
 
       this.state = {
          hideCompleted: false,
-         selectedItem: null,
+         selectedItem: undefined,
       }
    }
 
-   clickHandler(event) {
-      this.setState({selectedItem: })
-               key  = {task._id}
+   clickHandler(id) {
+      this.setState({selectedItem: id})
    }
 
    handleSubmit(event) {
@@ -50,14 +49,16 @@ class App extends Component {
          if (this.state.hideCompleted) {
             filteredTasks = filteredTasks.filter(task => !task.checked)
          }
-         return filteredTasks.map((task) => (
-            <Task
-               key  = {task._id}
-               task = {task}
-               onClick = {this.clickHandler.bind(this, id)}
-               isSelected = {is_selected}
-            />
-      ))
+         return filteredTasks.map((task) => {
+            const isSelected = task._id === this.state.selectedItem
+            return(
+               <Task
+                  key  = {task._id}
+                  task = {task}
+                  onClick = () => {this.clickHandler(task._id)}
+                  isSelected = {isSelected}
+               />)
+         })
    }
 
    render() {

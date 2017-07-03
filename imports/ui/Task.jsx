@@ -26,11 +26,19 @@ export default class Task extends Component {
    render() {
       // Give tasks a different className when they are checked off,
       // so that we can style them nicely in CSS
-      const taskClassName = this.props.task.checked ? 'checked' : ''
-      if ( this.props.task.isSelected ) ? 'selectedItem' : ''
+      const taskClassNameObject = { checked:  this.props.task.checked,
+                                    selected: this.props.isSelected,
+      }
+
+      const taskClassNames = Object.keys(taskClassNameObject).filter((key) => {
+         return taskClassNameObject[key]
+      })
+
+      const taskClassName = taskClassNames.join(' ')
+
 
       return (
-         <li className={taskClassName}>
+         <li onClick=this.props.onClick className={taskClassName}>
             <button className ="delete" onClick={this.deleteThisTask.bind(this)}>
                {/* '&times;' is the symbol for X */}
                &times;
