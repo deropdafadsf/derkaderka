@@ -55,7 +55,7 @@ class App extends Component {
                <Task
                   key  = {task._id}
                   task = {task}
-                  onClick = () => {this.clickHandler(task._id)}
+                  onClick = { () => {this.clickHandler(task._id)} }
                   isSelected = {isSelected}
                />)
          })

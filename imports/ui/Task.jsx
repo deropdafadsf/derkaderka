@@ -38,7 +38,7 @@ export default class Task extends Component {
 
 
       return (
-         <li onClick=this.props.onClick className={taskClassName}>
+         <li onClick={this.props.onClick} className={taskClassName}>
             <button className ="delete" onClick={this.deleteThisTask.bind(this)}>
                {/* '&times;' is the symbol for X */}
                &times;
