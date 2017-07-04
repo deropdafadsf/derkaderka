@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { Tasks } from '../../api/tasks.js'
 
 import Task from '../components/Task.jsx'
+import PomoTimer from '../components/PomoTimer.jsx'
 
 // App Component - represents the whole app
 class App extends Component {
@@ -89,6 +90,9 @@ class App extends Component {
             <ul>
                {this.renderTasks()}
             </ul>
+            <div>
+               <PomoTimer/>
+            </div>
          </div>
       )
    }
