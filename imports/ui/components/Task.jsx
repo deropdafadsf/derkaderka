@@ -24,9 +24,10 @@ export default class Task extends Component {
    }
 
    render() {
+      const task = this.props.task;
       // Give tasks a different className when they are checked off,
       // so that we can style them nicely in CSS
-      const taskClassNameObject = { checked:  this.props.task.checked,
+      const taskClassNameObject = { checked:  task.checked,
                                     selected: this.props.isSelected,
       }
 
@@ -46,11 +47,12 @@ export default class Task extends Component {
             <input
                type="checkbox"
                readOnly
-            checked={this.props.task.checked}
+            checked={task.checked}
             onClick={this.toggleChecked.bind(this)}
             />
 
-            <span className="text">{this.props.task.text}</span>
+            <span className="text">{task.text} </span>
+            <span className="pomoEstimate">({task.pomoCompleted}/{task.pomoEstimate})</span>
          </li>
       )
    }

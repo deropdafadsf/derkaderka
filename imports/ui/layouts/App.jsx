@@ -41,6 +41,7 @@ class App extends Component {
          text,
          createdAt: new Date(), //current time
          pomoEstimate: Number(this.state.pomoEstimate),
+         pomoCompleted: 0,
       })
 
       // clear form
