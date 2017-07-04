@@ -16,12 +16,20 @@ class App extends Component {
       this.state = {
          hideCompleted: false,
          selectedItem: undefined,
+         pomoEstimate: 0,
       }
+      this.pomoOnChange = this.pomoOnChange.bind(this)
    }
 
    clickHandler(id) {
       this.setState({selectedItem: id})
    }
+
+   pomoOnChange(event) {
+      this.setState({pomoEstimate: event.target.value})
+      console.log("fired")
+   }
+
 
    handleSubmit(event) {
       event.preventDefault()
@@ -32,9 +40,11 @@ class App extends Component {
       Tasks.insert({
          text,
          createdAt: new Date(), //current time
+         pomoEstimate: Number(this.state.pomoEstimate),
       })
 
       // clear form
+      this.setState({pomoEstimate: 0})
       ReactDOM.findDOMNode(this.refs.textInput).value = ''
    }
 
@@ -84,6 +94,16 @@ class App extends Component {
                      ref="textInput"
                      placeholder="Type to add new task"
                   />
+                  <div className="form-group">
+                    <label className="sr-only" htmlFor="sel1">Pomo Estimate:</label>
+                    <select value={this.state.pomoEstimate} onChange={this.pomoOnChange} className="form-control" id="sel1">
+                      <option value="0" >0</option>
+                      <option value="1" >1</option>
+                      <option value="2" >2</option>
+                      <option value="3" >3</option>
+                      <option value="4" >4</option>
+                    </select>
+                  </div>
                </form>
             </header>
 
