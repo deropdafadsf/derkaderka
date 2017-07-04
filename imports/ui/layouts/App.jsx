@@ -8,6 +8,8 @@ import { Tasks } from '../../api/tasks.js'
 import Task from '../components/Task.jsx'
 import PomoTimer from '../components/PomoTimer.jsx'
 
+import PomoModal from '../components/PomoModal.jsx'
+
 // App Component - represents the whole app
 class App extends Component {
    constructor(props) {
@@ -17,8 +19,10 @@ class App extends Component {
          hideCompleted: false,
          selectedItem: undefined,
          pomoEstimate: 0,
+         pomoModalOpen: false,
       }
       this.pomoOnChange = this.pomoOnChange.bind(this)
+      this.setPomoModalOpen= this.setPomoModalOpen.bind(this)
    }
 
    clickHandler(id) {
@@ -30,6 +34,9 @@ class App extends Component {
       console.log("fired")
    }
 
+   setPomoModalOpen(open) {
+      this.setState({pomoModalOpen: open})
+   }
 
    handleSubmit(event) {
       event.preventDefault()
@@ -69,6 +76,7 @@ class App extends Component {
                   task = {task}
                   onClick = { () => {this.clickHandler(task._id)} }
                   isSelected = {isSelected}
+                  setPomoModalOpen = {this.setPomoModalOpen}
                />)
          })
    }
@@ -107,6 +115,8 @@ class App extends Component {
                   </div>
                </form>
             </header>
+
+            {this.state.pomoModalOpen ? <PomoModal />: ''}
 
             <ul>
                {this.renderTasks()}

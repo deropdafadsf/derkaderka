@@ -40,19 +40,23 @@ export default class Task extends Component {
 
       return (
          <li onClick={this.props.onClick} className={taskClassName}>
+            <input
+               type="checkbox"
+            checked={task.checked}
+            onClick={this.toggleChecked.bind(this)}
+            />
+            <button onClick={() => this.props.setPomoModalOpen(true)} className="clockButton">
+               <i className="fa fa-clock-o"></i>
+            </button>
+
+            <span className="text">{task.text} </span>
+            <span className="pomoEstimate">({task.pomoCompleted}/{task.pomoEstimate})</span>
+
             <button className ="delete" onClick={this.deleteThisTask.bind(this)}>
                {/* '&times;' is the symbol for X */}
                &times;
             </button>
-            <input
-               type="checkbox"
-               readOnly
-            checked={task.checked}
-            onClick={this.toggleChecked.bind(this)}
-            />
 
-            <span className="text">{task.text} </span>
-            <span className="pomoEstimate">({task.pomoCompleted}/{task.pomoEstimate})</span>
          </li>
       )
    }
